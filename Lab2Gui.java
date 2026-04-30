@@ -14,10 +14,12 @@ public class Lab2Gui extends Application {
     
     @Override
     public void start(Stage stage) {
+        Button button = new Button("Register Genre");
         Button button1 = new Button("Manage movies");
         Button button2 = new Button("Customer management");
         Button button3 = new Button("Rentals");
-       
+
+        button.setOnAction(e ->showGenre(stage));
         button1.setOnAction(e -> showMovies(stage));
         button2.setOnAction(e -> showCustDetails(stage));
         button3.setOnAction(e -> showRentals(stage));
@@ -28,9 +30,12 @@ public class Lab2Gui extends Application {
         gridpane.setVgap(10);
         gridpane.setHgap(10);
         gridpane.setAlignment(Pos.CENTER);
-        gridpane.add(button1, 0, 0);
-        gridpane.add(button2, 0, 1);
-        gridpane.add(button3, 0, 2);
+        gridpane.add(button, 0, 0);
+        gridpane.add(button1, 0, 1);
+        gridpane.add(button2, 0, 2);
+        gridpane.add(button3, 0, 3);
+
+        button.setStyle("-fx-background-color: #E1A274; -fx-text-fill: white; -fx-font-size:13pt;");
         button1.setStyle("-fx-background-color: #E1A274; -fx-text-fill: white; -fx-font-size:13pt;");
         button2.setStyle("-fx-background-color: #E1A274; -fx-text-fill: white; -fx-font-size:13pt;");
         button3.setStyle("-fx-background-color: #E1A274; -fx-text-fill: white; -fx-font-size:13pt;");
@@ -41,6 +46,52 @@ public class Lab2Gui extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    
+    private void showGenre(Stage stage){
+        Text text1 = new Text("Name: ");
+        Text text2 = new Text("Registered: ");
+        TextField textfield1 = new TextField();
+        ComboBox combobox1 = new ComboBox();
+        Button button1 = new Button ("Save");
+        Button button2 = new Button ("Remove");
+        button1.setOnAction(e -> {
+            String name = textfield1.getText();
+            if (name == null|| name.trim().isEmpty()){
+                textfield1.requestFocus();
+                textfield1.setStyle("-fx-border-color: red;");
+            return;
+       }
+     
+    });    
+    
+    GridPane gridpane = new GridPane ();
+    gridpane.setMinSize(600,400);
+    gridpane.setPadding(new Insets(10, 10, 10, 10));
+    gridpane.setVgap(10);
+    gridpane.setHgap(10);
+    gridpane.setAlignment(Pos.CENTER);
+    gridpane.add(text1, 0, 0);
+    gridpane.add(textfield1, 1, 0);
+    gridpane.add(button1, 1, 2);
+    gridpane.add(text2, 0, 3);
+    gridpane.add(combobox1, 1, 3);
+    gridpane.add(button2, 1, 4);
+    
+    button1.setStyle("-fx-background-color: #724C4C; -fx-text-fill: white; -fx-font-size:13pt;");
+    button2.setStyle("-fx-background-color: #724C4C; -fx-text-fill: white; -fx-font-size:13pt;");
+    combobox1.setStyle("-fx-border-color: #724C4C;");
+    text1.setStyle("-fx-fill: black; -fx-font: normal bold 20px 'serif'");
+    text2.setStyle("-fx-fill: black; -fx-font: normal bold 20px 'serif'");
+    textfield1.setStyle("-fx-border-color: #FFE2B7");
+    gridpane.setStyle("-fx-background-color: #FFE2B7");
+    
+    Scene scene = new Scene(gridpane);
+    stage.setTitle("Movie Library System: Genre Registration");
+    stage.setScene(scene);
+    stage.show();
+        
+    }    
+
     private void showMovies(Stage stage){
     Text text1 = new Text("Name: ");
     Text text2 = new Text ("Registered: ");
